@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="src/styles.css" />
+		<link rel="stylesheet" href="src/scrolldiv.css" />
+		<link rel="stylesheet" href="src/scrollmenu.css" />
+	</head>
+	<body id="body">
+		
+		<div class="type_activators">
+			<label class="lab" id="LABsqlbasics" for="sqlbasics"><input type="radio" class="activator" id="sqlbasics" name="activator" value="sqlbasics" checked>SQL BASICS</label>
+			<label class="lab" id="LABunionbased" for="unionbased"><input type="radio" class="activator" id="unionbased" name="activator" value="unionbased">UNION BASED</label>
+			<label class="lab" id="LABhacksearch" for="hacksearch"><input type="radio" class="activator" id="hacksearch" name="activator" value="hacksearch">HACK SEARCH</label>
+			<label class="lab" id="LABstrings" for="strings"><input type="radio" class="activator" id="strings" name="activator" value="strings">STRINGS</label>
+			<label class="lab" id="LABother" for="other"><input type="radio" class="activator" id="other" name="activator" value="other">OTHER</label>
+		</div>
+		<div class="scroll">
+			<div class="type sqlbasics">
+				<div class="sub-type">
+					<label>CONVERT STATEMENTS</label>
+					<div class="options">
+						<a id="utf8" class="opt-sqlbasics">Convert Using UTF-8</a>
+						<a id="latin1" class="opt-sqlbasics">Convert Using Latin1</a>
+						<a id="cast" class="opt-sqlbasics">cast()</a>
+						<a id="unhex" class="opt-sqlbasics">unhex(hex())</a>
+						<a id="uncompress" class="opt-sqlbasics">uncompress(compress())</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>CHAR()</label>
+					<div class="options">
+						<a id="mysqlchar" class="opt-sqlbasics">MySQL CHAR()</a>
+						<a id="mssqlchar" class="opt-sqlbasics">MSSQL CHAR()</a>
+						<a id="oraclechar" class="opt-sqlbasics">Oracle CHAR()</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>REPLACE WHITESPACE</label>
+					<div class="options">
+						<a id="spaceplus" class="opt-sqlbasics">+</a>
+						<a id="spaceinline" class="opt-sqlbasics">/**/</a>
+						<a id="spaceclear" class="opt-sqlbasics">Clear</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SYSTEM VARIABLES - VERSION</label>
+					<div class="options">
+						<a id="varversion" class="opt-sqlbasics">Version()</a>
+						<a id="varversion2" class="opt-sqlbasics">@@Version</a>
+						<a id="varversion3" class="opt-sqlbasics">@@Global.version</a>
+						<a id="varversion4" class="opt-sqlbasics">@@Version_comment</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SYSTEM VARIABLES - USER</label>
+					<div class="options">
+						<a id="varuser1" class="opt-sqlbasics">User()</a>
+						<a id="varuser2" class="opt-sqlbasics">Current_user()</a>
+						<a id="varuser3" class="opt-sqlbasics">System_user()</a>
+						<a id="varuser4" class="opt-sqlbasics">Session_user()</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SYSTEM VARIABLES - DATABASE</label>
+					<div class="options">
+						<a id="vardb1" class="opt-sqlbasics">Database()</a>
+						<a id="vardb2" class="opt-sqlbasics">Schema()</a>
+						<a id="vardb3" class="opt-sqlbasics">From processlist</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SYSTEM VARIABLES - GET SERVER FOLDERS</label>
+					<div class="options">
+						<a id="varserver1" class="opt-sqlbasics">Charsets folder</a>
+						<a id="varserver2" class="opt-sqlbasics">Error log location</a>
+						<a id="varserver3" class="opt-sqlbasics">Language datadir</a>
+						<a id="varserver4" class="opt-sqlbasics">Pit file</a>
+						<a id="varserver5" class="opt-sqlbasics">Plugin dir</a>
+						<a id="varserver6" class="opt-sqlbasics">Socket dir</a>
+						<a id="varserver7" class="opt-sqlbasics">SQL basedir</a>
+						<a id="varserver8" class="opt-sqlbasics">SQL datadir</a>
+						<a id="varserver9" class="opt-sqlbasics">Temp dir</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SYSTEM VARIABLES - CHARSET</label>
+					<div class="options">
+						<a id="varcharset1" class="opt-sqlbasics">Charset client</a>
+						<a id="varcharset2" class="opt-sqlbasics">Charset connection</a>
+						<a id="varcharset3" class="opt-sqlbasics">Charset database</a>
+						<a id="varcharset4" class="opt-sqlbasics">Charset filesystem</a>
+						<a id="varcharset5" class="opt-sqlbasics">Charset server</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>OTHER SYSTEM VARIABLES</label>
+					<div class="options">
+						<a id="varsys1" class="opt-sqlbasics">Case intensiv tables</a>
+						<a id="varsys2" class="opt-sqlbasics">Case intensiv system</a>
+						<a id="varsys3" class="opt-sqlbasics">Collation set</a>
+						<a id="varsys4" class="opt-sqlbasics">Hostname</a>
+						<a id="varsys5" class="opt-sqlbasics">InnoDB</a>
+						<a id="varsys6" class="opt-sqlbasics">Operators</a>
+						<a id="varsys7" class="opt-sqlbasics">Port SQL</a>
+						<a id="varsys8" class="opt-sqlbasics">Recover options</a>
+						<a id="varsys9" class="opt-sqlbasics">Server OS</a>
+						<a id="varsys10" class="opt-sqlbasics">Server OS type</a>
+						<a id="varsys11" class="opt-sqlbasics">SSL open</a>
+						<a id="varsys12" class="opt-sqlbasics">Symlink</a>
+						<a id="varsys13" class="opt-sqlbasics">Timeout connect/wait</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>OTHER</label>
+					<div class="options">
+						<a id="othlpad" class="opt-sqlbasics">LPAD()</a>
+						<a id="othrepeat" class="opt-sqlbasics">Repeat()</a>
+						<a id="othifstat" class="opt-sqlbasics">If statement()</a>
+						<a id="othcaswth" class="opt-sqlbasics">Case when then</a>
+					</div>
+				</div>
+			</div>
+			<div class="type unionbased">
+				<div class="sub-type">
+					<label>COLUMN COUNT</label>
+					<div class="options">
+						<a id="orderby" class="opt-unionbased">ORDER BY</a>
+						<a id="orderby2" class="opt-unionbased">+ORDER+BY+</a>
+						<a id="groupby" class="opt-unionbased">GROUP BY</a>
+						<a id="groupby2" class="opt-unionbased">+GROUP+BY+</a>
+						<a id="selectall" class="opt-unionbased">SELECT * FROM</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>UNION STATEMENT</label>
+					<div class="options">
+						<a id="unintplus1" class="opt-unionbased">+UNION+SELECT+INT,INT</a>
+						<a id="unintplus2" class="opt-unionbased">+UNION+ALL+SELECT+INT,INT</a>
+						<a id="unintplus3" class="opt-unionbased">+UNION(SELECT(INT),(INT))</a>
+						<a id="unullplus1" class="opt-unionbased">+UNION+SELECT+null,null</a>
+						<a id="unullplus2" class="opt-unionbased">+UNION+ALL+SELECT+null,null</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>LOCAL DIOS</label>
+					<div class="options">
+						<a id="localdios1" class="opt-unionbased">LOCAL DIOS 1</a>
+						<a id="localdios2" class="opt-unionbased">LOCAL DIOS 2</a>
+						<a id="localdios3" class="opt-unionbased">LOCAL DIOS 3</a>
+						<a id="localdios4" class="opt-unionbased">LOCAL DIOS 4</a>
+						<a id="localdios5" class="opt-unionbased">LOCAL DIOS 5</a>
+						<a id="localdios6" class="opt-unionbased">LOCAL DIOS 6</a>
+						<a id="localdios7" class="opt-unionbased">LOCAL DIOS 7</a>
+						<a id="localdios8" class="opt-unionbased">LOCAL DIOS 8</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>PRIVILEGES CHECK</label>
+					<div class="options">
+						<a id="privi1" class="opt-unionbased">VIA IS.PRIVILEGES</a>
+						<a id="privi2" class="opt-unionbased">VIA MYSQL SYSTEM TABLE</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>DATABASES</label>
+					<div class="options">
+						<a id="db1" class="opt-unionbased">DB_NAMES GROUP_CONCAT()</a>
+						<a id="db2" class="opt-unionbased">DB_NAMES ONE SHOT</a>
+						<a id="db3" class="opt-unionbased">DB_NAMES FRM TABLE NAME</a>
+						<a id="db4" class="opt-unionbased">DB_NAMES FRM TABLE NAME WAF</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>TABLES</label>
+					<div class="options">
+						<a id="tbl1" class="opt-unionbased">TABLE_NAMES GROUP CONCAT()</a>
+						<a id="tbl2" class="opt-unionbased">TABLE_NAMES ONE SHOT</a>
+						<a id="tbl3" class="opt-unionbased">TABLE NAME COUNT</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>COLUMNS</label>
+					<div class="options">
+						<a id="clmn1" class="opt-unionbased">NAME GROUP CONCAT</a>
+						<a id="clmn2" class="opt-unionbased">COLUMN NAME ONE SHOT</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>DATA</label>
+					<div class="options">
+						<a id="data1" class="opt-unionbased">DATA GROUP CONCAT</a>
+						<a id="data2" class="opt-unionbased">DATA ONE SHOT</a>
+						<a id="data3" class="opt-unionbased">DATA SECOND SHOT</a>
+						<a id="data4" class="opt-unionbased">DATA THIRD SHOT</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SQL DIOS SET BY TR0JAN</label>
+					<div class="options">
+						<a id="diostr01" class="opt-unionbased">WAF</a>
+						<a id="diostr02" class="opt-unionbased">BENCHMARK()</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SQL DIOS SET BY MAKMAN</label>
+					<div class="options">
+						<a id="diosmak1" class="opt-unionbased">DIOS 1</a>
+						<a id="diosmakwaf" class="opt-unionbased">WAF</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SQL DIOS SET BY MADBLOOD</label>
+					<div class="options">
+						<a id="diosmad1" class="opt-unionbased">DIOS 1</a>
+						<a id="diosmadwaf" class="opt-unionbased">WAF</a>
+						<a id="diosmad@X" class="opt-unionbased">@X</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SQL DIOS SET BY ZEN</label>
+					<div class="options">
+						<a id="dioszen1" class="opt-unionbased">DIOS 1</a>
+						<a id="dioszen2" class="opt-unionbased">DIOS 2</a>
+						<a id="dioszenwaf" class="opt-unionbased">WAF</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SQL OTHER DIOS</label>
+					<div class="options">
+						<a id="diosakjaro" class="opt-unionbased">AKJARO</a>
+						<a id="diostpro" class="opt-unionbased">T-PRO</a>
+						<a id="diosz3r0" class="opt-unionbased">DR.Z3R0</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>POSTGRESQL DIOS SET</label>
+					<div class="options">
+						<a id="PostgreSQL1" class="opt-unionbased">PostgreSQL 8.4</a>
+						<a id="PostgreSQL2" class="opt-unionbased">PostgreSQL 9.1</a>
+						<a id="PostgreSQL3" class="opt-unionbased">All versions</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>MSSQL DIOS</label>
+					<div class="options">
+						<a id="mssql" class="opt-unionbased">Rummy/Zen</a>
+					</div>
+				</div>
+			</div>
+			<div class="type hacksearch">
+				<div class="sub-type">
+					<label>GENERAL / LINK SEARCH</label>
+					<div class="options">
+						<a id="wSite" class="opt-hacksearch">Within site search</a>
+						<a id="eSite" class="opt-hacksearch">Entire domain search</a>
+						<a id="iLink" class="opt-hacksearch">Internal links search</a>
+						<a id="bLink" class="opt-hacksearch">Back links search</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>PAGE SEARCH / EXTRA</label>
+					<div class="options">
+						<a id="adminlogin" class="opt-hacksearch">Admin/Login page search</a>
+						<a id="misc" class="opt-hacksearch">Misc search</a>
+						<a id="alexa" class="opt-hacksearch">Alexa</a>
+						<a id="builtWith" class="opt-hacksearch">BuiltWith</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>FILE SEARCH</label>
+					<div class="options">
+						<a id="docs" class="opt-hacksearch">Documents search</a>
+						<a id="conf" class="opt-hacksearch">Config file search</a>
+						<a id="Bkup" class="opt-hacksearch">Backup file search</a>
+						<a id="arch" class="opt-hacksearch">Archive search</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>DNS DETAILS</label>
+					<div class="options">
+						<a id="DHealth" class="opt-hacksearch">DNS health</a>
+						<a id="Dinfo" class="opt-hacksearch">DNS information</a>
+						<a id="dnsw" class="opt-hacksearch">DNS whois</a>
+						<a id="rbls" class="opt-hacksearch">Blacklist search</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>SCAN FOR THREATS</label>
+					<div class="options">
+						<a id="googleSafebrowsing" class="opt-hacksearch">Safe browsing</a>
+						<a id="siteadvisor" class="opt-hacksearch">McAfee</a>
+						<a id="norton" class="opt-hacksearch">Norton</a>
+						<a id="avgthreatlabs" class="opt-hacksearch">AVG</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>OTHER</label>
+					<div class="options">
+						<a id="subdomain" class="opt-hacksearch">Subdomain search</a>
+						<a id="url" class="opt-hacksearch">InUrl search</a>
+						<a id="userpass" class="opt-hacksearch">Username/Password search</a>
+						<a id="email" class="opt-hacksearch">Email search</a>
+					</div>
+				</div>
+			</div>
+			<div class="type strings">
+				<div class="sub-type">
+					<label>USEFULL STRINGS</label>
+					<div class="options">
+						<a id="pi" class="opt-strings">Pi</a>
+						<a id="bigpi" class="opt-strings">Big pi</a>
+						<a id="fibonacci" class="opt-strings">Fibonacci</a>
+						<a id="lorem" class="opt-strings">Lorem ipsum</a>
+					</div>
+				</div>
+			</div>
+			<div class="type other">
+				<div class="sub-type">
+					<label>BUFFER OVERFLOW</label>
+					<div class="options">
+						<a id="buffer128" class="opt-other">128</a>
+						<a id="buffer256" class="opt-other">256</a>
+						<a id="buffer512" class="opt-other">512</a>
+						<a id="buffer1024" class="opt-other">1024</a>
+						<a id="buffercustom" class="opt-other">Custom</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="stringsACT">
+			<img class="icono opt-strings" id="addslash" src="src/addslashes.png" title="Add slashes">
+			<img class="icono opt-strings" id="stripslash" src="src/stripslashes.png" title="Strip slashes">
+			<img class="icono opt-strings" id="stripspace" src="src/stripslashes.png" title="Strip spaces">
+			<img class="icono opt-strings" id="lowercase" src="src/text_lowercase.png" title="String to lowercase">
+			<img class="icono opt-strings" id="uppercase" src="src/text_uppercase.png" title="String to uppercase">
+			<img class="icono opt-strings" id="randomcase" src="src/arrow_switch.png" title="String to random capitalize">
+			<img class="icono opt-strings" id="reverse" src="src/arrow_undo.png" title="Reverse string">
+		</div>
+		
+		<label for="text_field" class="fielLabel" id="urlFieldLabel">URL FIELD</label>
+		<textarea id="text_field" cols="30" rows="3"></textarea>
+		<div class="encdec">
+			<!--HEX-->
+			<label class="opt-encdec arrow" id="fromhex" title="From HEX"><img class="icono" src="src/arrow_left.png"></label>
+			<label class="LabStyle" style="cursor: default;">HEX</label>
+			<label class="opt-encdec arrow" id="tohex" title="To HEX"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="separator"></label>
+			<!--%URL-->
+			<label class="opt-encdec arrow" id="fromurl" title="From URL"><img class="icono" src="src/arrow_left.png"></label>
+			<label class="LabStyle" style="cursor: default;">URL</label>
+			<label class="opt-encdec arrow" id="tourl" title="To URL"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="separator"></label>
+			<!--BASE64-->
+			<label class="opt-encdec arrow" id="fromb64" title="From BASE64"><img class="icono" src="src/arrow_left.png"></label>
+			<label class="LabStyle" style="cursor: default;">BASE64</label>
+			<label class="opt-encdec arrow" id="tob64" title="To BASE64"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="separator"></label>
+			<!--0bBINARY-->
+			<label class="opt-encdec arrow" id="frombinary" title="From BINARY"><img class="icono" src="src/arrow_left.png"></label>
+			<label class="LabStyle" style="cursor: default;">BINARY</label>
+			<label class="opt-encdec arrow" id="tobinary" title="To BINARY"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="separator"></label>
+			<!--MD5-->
+			<label class="LabStyle" style="cursor: default;">MD5</label>
+			<label class="opt-encdec arrow" id="tomd5" title="To MD5"><img class="icono" src="src/arrow_right.png"></label>
+		</div>
+		<div class="encdec2">
+			<!--SHA-1 HASH-->
+			<label class="LabStyle" style="cursor: default;">SHA-1</label>
+			<label class="opt-encdec arrow" id="sha1" title="To SHA-1"><img class="icono" src="src/arrow_right.png"></label>
+			<!--SHA-256-->
+			<label class="LabStyle" style="cursor: default;">SHA-256</label>
+			<label class="opt-encdec arrow" id="sha256" title="To SHA-256"><img class="icono" src="src/arrow_right.png"></label>
+			<!--SHA-512-->
+			<label class="LabStyle" style="cursor: default;">SHA-512</label>
+			<label class="opt-encdec arrow" id="sha512" title="To SHA-512"><img class="icono" src="src/arrow_right.png"></label>
+			<!--ROT13-->
+			<label class="LabStyle" style="cursor: default;">ROT13</label>
+			<label class="opt-encdec arrow" id="rot13" title="To ROT13"><img class="icono" src="src/arrow_right.png"></label>
+		</div>
+		<div class="actions">
+			<button class="load-url-btn">Load URL</button>
+			<button class="split-url-btn">Split URL</button>
+			<button class="execute-payload-btn">Execute</button>
+			<select id="ihoaa">
+				<option value="int">INT</option>
+				<option value="hex">HEX</option>
+				<option value="oct">OCT</option>
+				<option value="alpha">Alpha</option>
+				<option value="alnum">AlNum</option>
+			</select>
+			<a id="dec4number" class="opt-leftpanel"><img src="src/minus.png" class="icono" title="Decrement"></a>
+			<a id="inc4number" class="opt-leftpanel"><img src="src/plus.png" class="icono" title="Increment"></a>
+		</div>
+		<div class="toggles">
+			<label id="LABPdata" for="toggle-post-data">
+				<input id="toggle-post-data" type="checkbox">POST DATA
+			</label>
+			<label id="LABRdata" for="toggle-referer">
+				<input id="toggle-referer" type="checkbox">REFERER DATA
+			</label>
+		</div>
+		<div id="divPost" style="display: none;">
+			<label for="postdataField" id="postFieldLabel">POST DATA</label>
+			<textarea id="postdataField" cols="30" rows="3"></textarea>
+		</div>
+		<div id="divRefe" style="display: none;">
+			<label for="refedataField" id="refeFieldLabel">REFERER DATA</label>
+			<textarea id="refedataField" cols="30" rows="3"></textarea>
+		</div>
+		<label id="wadvise">The recommended sidebar width for better viewing of objects is between <b>401</b> and <b>425</b></label>
+		<div class="currentDiv">
+			<label><b>Width:</b> <span id="widthval" ></span></label>
+		</div>
+		<footer>
+			<a href="https://www.facebook.com/Jalkhov">&copy; Jalkhov 2020</a>
+			<a href="info.html">More info</a>
+		</footer>
+		<script src="js/JQuery3.4.1.js"></script>
+		<script src="js/Main.js"></script>
+		<script src="js/Functions.js"></script>
+		<script src="js/MenuActivators.js"></script>
+		<script src="js/CheckWidth.js"></script>
+		<script src="js/EncDec.js"></script>
+		<script src="js/Ihoaa.js"></script>
+		<script src="js/Error.js"></script>
+		<script src="js/HackSearch.js"></script>
+		<script src="js/Other.js"></script>
+		<script src="js/Sql.js"></script>
+		<script src="js/Strings.js"></script>
+		<script src="js/Union.js"></script>
+		<script src="js/Waf.js"></script>
+		<script src="js/Xss.js"></script>-->
+	</body>
+</html>

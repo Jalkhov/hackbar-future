@@ -1,0 +1,48 @@
+body {
+	--main-color: #252b39;
+	--secondary-color: #00E0C7;
+}
+
+.sub-type label {
+	background-color: var(--secondary-color);
+	color: var(--main-color);
+	font-weight: bolder;
+	padding: 5px 0 5px 2px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.sub-type {
+	margin-bottom: 15px;
+}
+
+.sub-type .options {
+	line-height: 22px;
+}
+
+.sub-type a {
+	color: var(--main-color);
+	text-decoration: none;
+	padding: 3px 6px;
+	cursor: pointer;
+}
+
+.sub-type a:hover {
+	background-color: var(--secondary-color);
+	text-decoration: none;
+}
+
+/*----ACTIVATORS----*/
+.type_activators {
+	margin-bottom: 10px;
+}
+
+.type_activators label {
+	color: white;
+	font-weight: bolder;
+}
+
+.type_activators label,
+.type_activators input[type="radio"] {
+	cursor: pointer;
+}
