@@ -20,7 +20,7 @@ Mainly thanks to [Johan Adriaans](https://github.com/johan-adriaans) and [Pedro 
 
 The Hackbar Future logo was taken from [here](http://www.softicons.com/system-icons/hydropro-icons-by-mediadesign/firefox-icon), all credits to its [designer](http://mediadesign.deviantart.com/).
 
-# Download rigth now! #
+# Download it rigth now! #
 From [HERE](https://addons.mozilla.org/es/firefox/addon/hackbar-future/).
 
 # Some screenshot? #
