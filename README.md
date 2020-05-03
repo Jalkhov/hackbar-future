@@ -1,6 +1,6 @@
-![Hackbar Future Logo](src/BannerHBF.png)
+![Hackbar Future Logo](/src/BannerHBF.png)
 
-# Another Hackar for Firefox Quatum? :unamused: #
+# Another Hacbkar for Firefox Quantum? :unamused: #
 
 Yes, but **improved by 1000%**, more features, more compact and visually remodeled. You never see something similar. This Add-on is available on Mozilla's Add-on site. You can download it right now from [HERE](https://addons.mozilla.org/es/firefox/addon/hackbar-future/).
 
