@@ -95,6 +95,7 @@ browser.tabs.query({
 
 
 /*-------GET SELECTED TEXT-------*/
+/*
 function getSelectedText() {
 	selectionStart = text_field.selectionStart;
 	selectionEnd = text_field.selectionEnd;
@@ -102,6 +103,36 @@ function getSelectedText() {
 		return prompt("Insert string", "String to use");
 	} else {
 		return text_field.value.substr(selectionStart, selectionEnd - selectionStart);
+	}
+}
+*/
+
+
+/*-------NEW PROMPT QITH JQUERY-MODAL------*/
+function iPrompt(callbackFunction) {
+	$('#prompt').modal({
+		escapeClose: false,
+		clickClose: false,
+		showClose: false
+	});
+	$('#prompt input').val("");
+	$('#prompt button').bind('click', () => {
+		const selected_text = $('#prompt input').val();
+		callbackFunction(selected_text);
+		$.modal.close();
+	});
+}
+
+
+/*-------GET SELECTED TEXT-------*/
+function getSelectedText(callbackFunction) {
+	selectionStart = text_field.selectionStart;
+	selectionEnd = text_field.selectionEnd;
+
+	if (selectionEnd - selectionStart < 1) {
+		iPrompt(callbackFunction);
+	} else {
+		callbackFunction(text_field.value.substr(selectionStart, selectionEnd - selectionStart));
 	}
 }
 

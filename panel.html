@@ -2,12 +2,20 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="src/jquery.modal.min.css">
 		<link rel="stylesheet" href="src/styles.css" />
 		<link rel="stylesheet" href="src/scrolldiv.css" />
 		<link rel="stylesheet" href="src/scrollmenu.css" />
+		<link rel="stylesheet" href="src/modal.css">
 	</head>
 	<body id="body">
-		
+		<div id="prompt" class="modal">
+			<label>Insert string</label>
+			<input type="text">
+			<button>Aceptar</button>
+			<a id="close" href="#" rel="modal:close">Close</a>
+		</div>
+
 		<div class="type_activators">
 			<label class="lab" id="LABsqlbasics" for="sqlbasics"><input type="radio" class="activator" id="sqlbasics" name="activator" value="sqlbasics" checked>SQL BASICS</label>
 			<label class="lab" id="LABunionbased" for="unionbased"><input type="radio" class="activator" id="unionbased" name="activator" value="unionbased">UNION BASED</label>
@@ -153,6 +161,12 @@
 						<a id="localdios6" class="opt-unionbased">LOCAL DIOS 6</a>
 						<a id="localdios7" class="opt-unionbased">LOCAL DIOS 7</a>
 						<a id="localdios8" class="opt-unionbased">LOCAL DIOS 8</a>
+					</div>
+				</div>
+				<div class="sub-type">
+					<label>INTO OUTFILE</label>
+					<div class="options">
+						<a id="intoutfile" class="opt-unionbased">Into Outfile</a>
 					</div>
 				</div>
 				<div class="sub-type">
@@ -391,8 +405,8 @@
 				<option value="alpha">Alpha</option>
 				<option value="alnum">AlNum</option>
 			</select>
-			<a id="dec4number" class="opt-leftpanel"><img src="src/minus.png" class="icono" title="Decrement"></a>
-			<a id="inc4number" class="opt-leftpanel"><img src="src/plus.png" class="icono" title="Increment"></a>
+			<a id="dec4number" class="opt-ihoaa"><img src="src/minus.png" class="icono" title="Decrement"></a>
+			<a id="inc4number" class="opt-ihoaa"><img src="src/plus.png" class="icono" title="Increment"></a>
 		</div>
 		<div class="toggles">
 			<label id="LABPdata" for="toggle-post-data">
@@ -416,9 +430,9 @@
 		</div>
 		<footer>
 			<a href="https://www.facebook.com/Jalkhov">&copy; Jalkhov 2020</a>
-			<a href="info.html">More info</a>
 		</footer>
 		<script src="js/JQuery3.4.1.js"></script>
+		<script src="js/jquery.modal.min.js"></script>
 		<script src="js/Main.js"></script>
 		<script src="js/Functions.js"></script>
 		<script src="js/MenuActivators.js"></script>
@@ -432,6 +446,7 @@
 		<script src="js/Strings.js"></script>
 		<script src="js/Union.js"></script>
 		<script src="js/Waf.js"></script>
-		<script src="js/Xss.js"></script>-->
+		<script src="js/Xss.js"></script>
+		<script src="js/newMethod.js"></script>
 	</body>
 </html>
