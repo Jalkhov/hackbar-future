@@ -1,38 +1,22 @@
-$(document).ready(function() {
-	$(function() {
-		$(".opt-leftpanel").on("click", function() {
-			let opt = this.id;
-			let ihoaa = document.getElementById("ihoaa");
-			let mode = ihoaa.options[ihoaa.selectedIndex].value;
-			var str = "";
-			var ascii = "";
-			var hex = "";
-			var string = "";
-			var i = 0;
+function setLeftPanel(id){
+	var ihoaa = document.getElementById("ihoaa");
+	var mode = ihoaa.options[ihoaa.selectedIndex].value;
 
-			switch (opt) {
-				/*------INCREMENT FOR NUMBER------*/
-				case "inc4number":
-					string = inc4number(mode, getSelectedText())
-					break;
-
-				/*------DECREMENT FOR NUMBER------*/
-				case "dec4number":
-					string = dec4number(mode, getSelectedText())
-					break;
-
-				/*------CLEAN FIELDS------*/
-				case "clean":
-					iClean()
-					break;
-
-				default:
-					string = "www.facebook.com/Jalkhov";
-			}
-			if (string) {
-				setSelectedText(string);
+	switch (id) {
+		/*------INCREMENT FOR NUMBER------*/
+		case "inc4number":
+			getSelectedText(function(str) {
+				setSelectedText(inc4number(mode, str))
 				iUpdate($('#text_field').val())
-			}
-		});
-	});
-});
+			});
+			break;
+
+		/*------DECREMENT FOR NUMBER------*/
+		case "dec4number":
+			getSelectedText(function(str) {
+				setSelectedText(dec4number(mode, str))
+				iUpdate($('#text_field').val())
+			});
+			break;
+	}
+}

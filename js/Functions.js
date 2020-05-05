@@ -26,15 +26,28 @@ function iGroupBy() {
 
 
 /*------RETURN ARRAY FROM REQUESTED COLUMNS------*/
-function arrayColumns() {
-	var columns = prompt("Amount of columns to use in the UNION SELECT Statement", "10");
-	columns = Math.min(1000, parseInt(columns));
+function arrayColumns(n) {
+	columns = Math.min(1000, parseInt(n));
 	var colArray = new Array();
 	for (var i = 0; i < columns; i++) {
 		colArray.push(i + 1);
 	}
-	return colArray
+	return colArray;
 }
+
+
+/*
+function getSelectedText(callbackFunction) {
+	selectionStart = text_field.selectionStart;
+	selectionEnd = text_field.selectionEnd;
+
+	if (selectionEnd - selectionStart < 1) {
+		iPrompt(callbackFunction);
+	} else {
+		callbackFunction(text_field.value.substr(selectionStart, selectionEnd - selectionStart));
+	}
+}*/
+
 
 
 /*------RETURN NUMBER(INT) FROM REQUESTED COLUMNS------*/
@@ -44,24 +57,17 @@ function Columns() {
 
 
 /*------GENERATE n "null" WORDS DEPENDING FROM REQUESTED COLUMNS------*/
-function iNull() {
-	var rep = multiString("null,", Columns());
-	return rep
-}
-
-
-/*------ITERATE RECEIVED WORD DEPENDING OF REQUESTED COUNT------*/
-function multiString(text, count) {
-	var ret = "";
+function iNull(count) {
+	var ret = '';
 	for (var i = 0; i < count; i++) {
-		ret += text;
+		ret += "null,";
 	}
 	return ret;
 }
 
 
 /*------SET NAME OF DATABASES AND TABLES------*/
-function iDbtbl(msg, helper) {
+/*function iDbtbl(msg, helper) {
 	var dbtbl = prompt(msg, helper);
 	var dbtblNameFinal = "0x";
 	if (dbtbl == "") {
@@ -73,9 +79,11 @@ function iDbtbl(msg, helper) {
 	}
 	return dbtblNameFinal;
 }
+*/
 
 
 /*------SET COLUMNS------*/
+/*
 function iDbTblClmn(clmntype) {
 	var data = new Array();
 	var Db = '';
@@ -91,17 +99,22 @@ function iDbTblClmn(clmntype) {
 		cols = prompt("Insert columns to dump", "column_1,column_2,column_3");
 	}
 
-	if (Db == "") {
-		dbANDtable = table;
-	}
-	if (Db == "DATABASE()") {
-		dbANDtable = table;
-	} else {
-		dbANDtable = Db + "." + table;
-	}
+	dbANDtable = Db + "." + table;
+	
 	data = [cols, dbANDtable];
 	return data;
 }
+*/
+
+/*
+function xLabel(txt){
+	$('#prompt label').html(txt);
+}
+
+function rLabel(){
+	$('#prompt label').html("Insert string");
+}
+*/
 
 
 /*------ADD SLASHES FUNCTION------*/
