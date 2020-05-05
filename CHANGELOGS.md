@@ -9,7 +9,7 @@
 Initial release, see some functionalities in the [README.md](README.md).
 
 ## 1.1.1 ##
-- The default javascript window (prompt) was changed to a modal window for data entry.
+- The default javascript prompt was changed to a modal window for data entry.
 - Added XSS options.
 - Added WAF strings and queries.
 - Added error-based queries.
