@@ -23,6 +23,9 @@ The Hackbar Future logo was taken from [here](http://www.softicons.com/system-ic
 # Download it rigth now! #
 From [HERE](https://addons.mozilla.org/es/firefox/addon/hackbar-future/).
 
+# How to use #
+Press **F1** to activate/deactivate.
+
 # Some screenshot? #
 
 You can see them from the download page.
