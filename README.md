@@ -37,3 +37,6 @@ Consult them [HERE](CHANGELOGS.md).
 
 # License #
 Mozilla Public License 2.0
+
+# Support #
+[Buy me a Coffee](https://www.buymeacoffee.com/Jalkhov) :)
