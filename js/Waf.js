@@ -1,4 +1,4 @@
-function setWaf(id){
+function setWaf(id) {
 	switch (id) {
 		/*------STRING------*/
 		case "waf1":

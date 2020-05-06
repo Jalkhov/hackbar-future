@@ -1,6 +1,5 @@
-function setUnionBased(id){
-	var rep, dbNameFinal, tblNameFinal,	Db, table, cols, data = "";
-
+function setUnionBased(id) {
+	var rep, dbNameFinal, tblNameFinal, Db, table, cols, data = "";
 	switch (id) {
 		/*------COLUMN COUNT: ORDER BY------*/
 		case "orderby":

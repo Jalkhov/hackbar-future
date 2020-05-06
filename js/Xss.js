@@ -1,6 +1,5 @@
-function setXss(id){
-	var ascii = "";
-	var hex = "";
+function setXss(id) {
+	var hex, ascii = "";
 	var i = 0;
 
 	switch (opt) {
