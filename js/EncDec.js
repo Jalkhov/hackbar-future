@@ -91,5 +91,4 @@ function setEncDec(id) {
 			});
 			break;
 	}
-	rLabel();
 }
