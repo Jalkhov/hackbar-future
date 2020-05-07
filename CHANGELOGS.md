@@ -3,6 +3,8 @@
 # Changelogs #
 
 ----------
+## [1.2.0](https://addons.mozilla.org/firefox/downloads/file/3562934/hackbar_future-1.2.0-fx.xpi "1.2.0") ##
+- Added new bypassed WAF D.I.O.S created by me ;)
 
 ## [1.1.1](https://addons.mozilla.org/firefox/downloads/file/3562934/hackbar_future-1.1.1-fx.xpi "1.1.1") ##
 - The default javascript prompt was changed to a modal window for data entry.
