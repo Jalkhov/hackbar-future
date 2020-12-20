@@ -3,6 +3,9 @@
 # Changelogs #
 
 ----------
+## [1.2.1](https://addons.mozilla.org/firefox/downloads/file/3562934/hackbar_future-1.2.1-fx.xpi "1.2.1") ##
+- The execute button will not send the request unless the URL field is filled in.
+
 ## [1.2.0](https://addons.mozilla.org/firefox/downloads/file/3562934/hackbar_future-1.2.0-fx.xpi "1.2.0") ##
 - Added new bypassed WAF D.I.O.S created by me ;)
 
