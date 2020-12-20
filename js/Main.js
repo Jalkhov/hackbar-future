@@ -181,90 +181,93 @@ function splitUrl() {
 
 /*-------EJECUTAR-------*/
 function execute() {
-	browser.tabs.query({
-		active: true,
-		currentWindow: true
-	}).then(function(tabs) {
-		var currentTabUrl = tabs[0].url;
-		let contentToStore = {};
-		let arraycontent = {};
-		arraycontent[0] = urlField.val();
-		arraycontent[1] = postDataField.val();
-		arraycontent[2] = refererField.val();
-		contentToStore[urlField.val()] = arraycontent;
-		browser.storage.local.set(contentToStore);
-		if (enableRefererBtn.prop('checked')) {
-			browser.webRequest.onBeforeSendHeaders.addListener(
-				rewriteReferer, {
-					urls: ["<all_urls>"],
-					types: ["main_frame"]
-				}, ["blocking", "requestHeaders"]
-			);
-		}
-		if (!enablePostBtn.prop('checked')) { // just get method
-			var updating = browser.tabs.update({
-				url: urlField.val()
-			});
-			updating.then(null, null);
-			return;
-		}
-		var postData = getPostdata();
-		if (typePostdata == "formdata") {
-			var scriptpost = 'document.body.innerHTML += \'<form id="newhackbardynForm" action="' + urlField.val() + '" method="post">';
-			for (var i = 0; i < postData.length; i++) {
-				var field = postData[i].split('=');
-				var fieldvalue = "";
-				if (field.length == 2) {
-					fieldvalue = field[1];
-				} else if (field.length == 3) { // base64 case
-					if (field[2] == "") {
-						fieldvalue = field[1] + "%3d";
-					}
-				} else {
-					typePostdata = "raw";
-					break;
-				}
-				scriptpost += '<input type="hidden" name="' + field[0] + '" value="' + fieldvalue + '">';
+	if (urlField.val() == ''){
+	}else{
+		browser.tabs.query({
+			active: true,
+			currentWindow: true
+		}).then(function(tabs) {
+			var currentTabUrl = tabs[0].url;
+			let contentToStore = {};
+			let arraycontent = {};
+			arraycontent[0] = urlField.val();
+			arraycontent[1] = postDataField.val();
+			arraycontent[2] = refererField.val();
+			contentToStore[urlField.val()] = arraycontent;
+			browser.storage.local.set(contentToStore);
+			if (enableRefererBtn.prop('checked')) {
+				browser.webRequest.onBeforeSendHeaders.addListener(
+					rewriteReferer, {
+						urls: ["<all_urls>"],
+						types: ["main_frame"]
+					}, ["blocking", "requestHeaders"]
+				);
 			}
-			if (typePostdata == "formdata") {
-				scriptpost += '</form>\';document.getElementById("newhackbardynForm").submit();'
-				var executing = browser.tabs.executeScript({
-					code: scriptpost
-				});
-				executing.then(null, null);
-			}
-		}
-		if (typePostdata != "formdata") // for raw data and mutilpart formdata
-		{
-			if (currentTabUrl != urlField.val()) {
+			if (!enablePostBtn.prop('checked')) { // just get method
 				var updating = browser.tabs.update({
 					url: urlField.val()
 				});
 				updating.then(null, null);
+				return;
 			}
-			var responsePost = "";
-			fetch(urlField.val(), {
-				method: "POST",
-				redirect: 'follow',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Cache': 'no-cache'
-				},
-				credentials: 'include',
-				body: postDataField.val()
-			}).then(function(response) {
-				response.text().then(function(text) {
-					responsePost = text;
-					var scriptpost = 'document.body.innerHTML = unescape(\'' + urlencode(responsePost) + '\');';
+			var postData = getPostdata();
+			if (typePostdata == "formdata") {
+				var scriptpost = 'document.body.innerHTML += \'<form id="newhackbardynForm" action="' + urlField.val() + '" method="post">';
+				for (var i = 0; i < postData.length; i++) {
+					var field = postData[i].split('=');
+					var fieldvalue = "";
+					if (field.length == 2) {
+						fieldvalue = field[1];
+					} else if (field.length == 3) { // base64 case
+						if (field[2] == "") {
+							fieldvalue = field[1] + "%3d";
+						}
+					} else {
+						typePostdata = "raw";
+						break;
+					}
+					scriptpost += '<input type="hidden" name="' + field[0] + '" value="' + fieldvalue + '">';
+				}
+				if (typePostdata == "formdata") {
+					scriptpost += '</form>\';document.getElementById("newhackbardynForm").submit();'
 					var executing = browser.tabs.executeScript({
 						code: scriptpost
 					});
 					executing.then(null, null);
+				}
+			}
+			if (typePostdata != "formdata") // for raw data and mutilpart formdata
+			{
+				if (currentTabUrl != urlField.val()) {
+					var updating = browser.tabs.update({
+						url: urlField.val()
+					});
+					updating.then(null, null);
+				}
+				var responsePost = "";
+				fetch(urlField.val(), {
+					method: "POST",
+					redirect: 'follow',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'Cache': 'no-cache'
+					},
+					credentials: 'include',
+					body: postDataField.val()
+				}).then(function(response) {
+					response.text().then(function(text) {
+						responsePost = text;
+						var scriptpost = 'document.body.innerHTML = unescape(\'' + urlencode(responsePost) + '\');';
+						var executing = browser.tabs.executeScript({
+							code: scriptpost
+						});
+						executing.then(null, null);
+					});
 				});
-			});
-		}
+			}
 
-	});
+		});
+	}
 }
 
 
