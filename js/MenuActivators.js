@@ -37,6 +37,9 @@ $(document).ready(function() {
 
 		//CHANGE LABEL
 		$(".lab").not(targetlabel).css('color', 'white');
+		$(".lab").not(targetlabel).css('text-decoration', 'none');
+
 		$(targetlabel).css('color', '#00E0C7');
+		$(targetlabel).css('text-decoration', 'underline');
 	});
 });
