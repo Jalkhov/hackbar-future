@@ -15,13 +15,12 @@
 			<button>Accept</button>
 			<a id="close" href="#" rel="modal:close">Close</a>
 		</div>
-
 		<div class="type_activators">
-			<label class="lab" id="LABsqlbasics" for="sqlbasics"><input type="radio" class="activator" id="sqlbasics" name="activator" value="sqlbasics" checked>SQL BASICS</label>
-			<label class="lab" id="LABunionbased" for="unionbased"><input type="radio" class="activator" id="unionbased" name="activator" value="unionbased">UNION BASED</label>
-			<label class="lab" id="LABhacksearch" for="hacksearch"><input type="radio" class="activator" id="hacksearch" name="activator" value="hacksearch">HACK SEARCH</label>
-			<label class="lab" id="LABstrings" for="strings"><input type="radio" class="activator" id="strings" name="activator" value="strings">STRINGS</label>
-			<label class="lab" id="LABother" for="other"><input type="radio" class="activator" id="other" name="activator" value="other">OTHER</label>
+			<label class="lab" id="LABsqlbasics" for="sqlbasics"><input type="radio" class="activator" hidden id="sqlbasics" name="activator" value="sqlbasics" checked>SQL BASICS</label>
+			<label class="lab" id="LABunionbased" for="unionbased"><input type="radio" class="activator" hidden id="unionbased" name="activator" value="unionbased">UNION BASED</label>
+			<label class="lab" id="LABhacksearch" for="hacksearch"><input type="radio" class="activator" hidden id="hacksearch" name="activator" value="hacksearch">HACK SEARCH</label>
+			<label class="lab" id="LABstrings" for="strings"><input type="radio" class="activator" hidden id="strings" name="activator" value="strings">STRINGS</label>
+			<label class="lab" id="LABother" for="other"><input type="radio" class="activator" hidden id="other" name="activator" value="other">OTHER</label>
 		</div>
 		<div class="scroll">
 			<div class="type sqlbasics">
@@ -425,10 +424,6 @@
 			<label for="refedataField" id="refeFieldLabel">REFERER DATA</label>
 			<textarea id="refedataField" cols="30" rows="3"></textarea>
 		</div>
-		<label id="wadvise">The recommended sidebar width for better viewing of objects is between <b>401</b> and <b>425</b></label>
-		<div class="currentDiv">
-			<label><b>Width:</b> <span id="widthval" ></span></label>
-		</div>
 		<footer>
 			<a href="https://www.facebook.com/Jalkhov">&copy; Jalkhov 2020</a>
 		</footer>
@@ -437,7 +432,6 @@
 		<script src="js/Main.js"></script>
 		<script src="js/Functions.js"></script>
 		<script src="js/MenuActivators.js"></script>
-		<script src="js/CheckWidth.js"></script>
 		<script src="js/EncDec.js"></script>
 		<script src="js/Ihoaa.js"></script>
 		<script src="js/Error.js"></script>
