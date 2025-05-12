@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Hackbar Future",
-	"version": "1.2.1",
+	"version": "1.3.0",
 	"description": "One of the best extensions for pentesters, the Hackbar, now in Firefox Quantum, but improved by 1000%, more features, more compact and visually remodeled.",
 	"author": "Jalkhov",
 	"homepage_url": "https://github.com/Jalkhov/hackbar-future",
@@ -10,16 +10,22 @@
 	},
 
 	"icons": {
-		"24": "src/iconx24.png",
-		"32": "src/iconx32.png",
-		"48": "src/iconx48.png",
-		"128": "src/iconx128.png"
+		"24": "img/iconx24.png",
+		"32": "img/iconx32.png",
+		"48": "img/iconx48.png",
+		"128": "img/iconx128.png"
 	},
 
-	"permissions": ["storage", "tabs", "webRequest", "webRequestBlocking", "<all_urls>"],
+	"permissions": [
+		"storage",
+		"tabs",
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
 
 	"sidebar_action": {
-		"default_icon": "src/iconx48.png",
+		"default_icon": "img/iconx48.png",
 		"default_title": "Hackbar Future",
 		"default_panel": "panel.html"
 	},
