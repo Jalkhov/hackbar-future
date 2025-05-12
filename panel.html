@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="src/jquery.modal.min.css">
-		<link rel="stylesheet" href="src/styles.css" />
-		<link rel="stylesheet" href="src/scrolldiv.css" />
-		<link rel="stylesheet" href="src/scrollmenu.css" />
-		<link rel="stylesheet" href="src/modal.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/modal.css">
+		<title>Hackbar Future</title>
 	</head>
-	<body id="body">
-		<div id="prompt" class="modal">
-			<label>Insert string</label>
-			<input type="text">
-			<button>Accept</button>
-			<a id="close" href="#" rel="modal:close">Close</a>
-		</div>
+	<body>
+		<dialog id="inputPromptDialog">
+			<button type="button" id="closePromptBtn" class="dialog-close-button">✖</button>
+			<form method="dialog">
+				<label>
+					Enter value:
+					<input type="text" id="promptValueInput" autofocus>
+				</label>
+				<div class="buttons">
+					<button type="submit" id="promptConfirmBtn">OK</button>
+				</div>
+			</form>
+		</dialog>
 		<div class="type_activators">
-			<label class="lab" id="LABsqlbasics" for="sqlbasics"><input type="radio" class="activator" hidden id="sqlbasics" name="activator" value="sqlbasics" checked>SQL BASICS</label>
-			<label class="lab" id="LABunionbased" for="unionbased"><input type="radio" class="activator" hidden id="unionbased" name="activator" value="unionbased">UNION BASED</label>
-			<label class="lab" id="LABhacksearch" for="hacksearch"><input type="radio" class="activator" hidden id="hacksearch" name="activator" value="hacksearch">HACK SEARCH</label>
-			<label class="lab" id="LABstrings" for="strings"><input type="radio" class="activator" hidden id="strings" name="activator" value="strings">STRINGS</label>
-			<label class="lab" id="LABother" for="other"><input type="radio" class="activator" hidden id="other" name="activator" value="other">OTHER</label>
+			<label class="lab" id="LABsqlbasics">
+				<input type="radio" class="activator" id="sqlbasics" name="activator" value="sqlbasics" checked>
+				<span class="label-text">SQL BASICS</span>
+			</label>
+			<label class="lab" id="LABunionbased">
+				<input type="radio" class="activator" id="unionbased" name="activator" value="unionbased">
+				<span class="label-text">UNION BASED</span>
+			</label>
+			<label class="lab" id="LABhacksearch">
+				<input type="radio" class="activator" id="hacksearch" name="activator" value="hacksearch">
+				<span class="label-text">HACK SEARCH</span>
+			</label>
+			<label class="lab" id="LABstrings">
+				<input type="radio" class="activator" id="strings" name="activator" value="strings">
+				<span class="label-text">STRINGS</span>
+			</label>
+			<label class="lab" id="LABother">
+				<input type="radio" class="activator" id="other" name="activator" value="other">
+				<span class="label-text">OTHER</span>
+			</label>
 		</div>
 		<div class="scroll">
 			<div class="type sqlbasics">
@@ -227,7 +246,7 @@
 					<div class="options">
 						<a id="diosmad1" class="opt-unionbased">DIOS 1</a>
 						<a id="diosmadwaf" class="opt-unionbased">WAF</a>
-						<a id="diosmad@X" class="opt-unionbased">@X</a>
+						<a id="diosmad_X" class="opt-unionbased">@X</a>
 					</div>
 				</div>
 				<div class="sub-type">
@@ -342,62 +361,61 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="stringsACT">
-			<img class="icono opt-strings" id="addslash" src="src/addslashes.png" title="Add slashes">
-			<img class="icono opt-strings" id="stripslash" src="src/stripslashes.png" title="Strip slashes">
-			<img class="icono opt-strings" id="stripspace" src="src/stripslashes.png" title="Strip spaces">
-			<img class="icono opt-strings" id="lowercase" src="src/text_lowercase.png" title="String to lowercase">
-			<img class="icono opt-strings" id="uppercase" src="src/text_uppercase.png" title="String to uppercase">
-			<img class="icono opt-strings" id="randomcase" src="src/arrow_switch.png" title="String to random capitalize">
-			<img class="icono opt-strings" id="reverse" src="src/arrow_undo.png" title="Reverse string">
+			<img class="icono opt-strings" alt="Add Slash" id="addslash" src="img/addslashes.png" title="Add slashes">
+			<img class="icono opt-strings" alt="Strip Slash" id="stripslash" src="img/stripslashes.png" title="Strip slashes">
+			<img class="icono opt-strings" alt="Strip Space" id="stripspace" src="img/stripslashes.png" title="Strip spaces">
+			<img class="icono opt-strings" alt="Lowercase" id="lowercase" src="img/text_lowercase.png" title="String to lowercase">
+			<img class="icono opt-strings" alt="Uppercase" id="uppercase" src="img/text_uppercase.png" title="String to uppercase">
+			<img class="icono opt-strings" alt="Randomcase" id="randomcase" src="img/arrow_switch.png" title="String to random capitalize">
+			<img class="icono opt-strings" alt="Reverse" id="reverse" src="img/arrow_undo.png" title="Reverse string">
+			<img class="icono" alt="Configuration" id="config" src="img/cog.png" title="Configuration">
 		</div>
-		
-		<label for="text_field" class="fielLabel" id="urlFieldLabel">URL FIELD</label>
-		<textarea id="text_field" cols="30" rows="3"></textarea>
+		<label for="url-field" class="fielLabel" id="urlFieldLabel">URL FIELD</label>
+		<textarea id="url-field" cols="30" rows="5"></textarea>
 		<div class="encdec">
 			<!--HEX-->
-			<label class="opt-encdec arrow" id="fromhex" title="From HEX"><img class="icono" src="src/arrow_left.png"></label>
-			<label class="LabStyle" style="cursor: default;">HEX</label>
-			<label class="opt-encdec arrow" id="tohex" title="To HEX"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="opt-encdec arrow" id="fromhex" title="From HEX"><img class="icono" alt="From Hex" src="img/arrow_left.png"></label>
+			<label class="LabStyle">HEX</label>
+			<label class="opt-encdec arrow" id="tohex" title="To HEX"><img class="icono" alt="To Hex" src="img/arrow_right.png"></label>
 			<label class="separator"></label>
 			<!--%URL-->
-			<label class="opt-encdec arrow" id="fromurl" title="From URL"><img class="icono" src="src/arrow_left.png"></label>
-			<label class="LabStyle" style="cursor: default;">URL</label>
-			<label class="opt-encdec arrow" id="tourl" title="To URL"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="opt-encdec arrow" id="fromurl" title="From URL"><img class="icono" alt="From URL" src="img/arrow_left.png"></label>
+			<label class="LabStyle">URL</label>
+			<label class="opt-encdec arrow" id="tourl" title="To URL"><img class="icono" alt="To URL" src="img/arrow_right.png"></label>
 			<label class="separator"></label>
 			<!--BASE64-->
-			<label class="opt-encdec arrow" id="fromb64" title="From BASE64"><img class="icono" src="src/arrow_left.png"></label>
-			<label class="LabStyle" style="cursor: default;">BASE64</label>
-			<label class="opt-encdec arrow" id="tob64" title="To BASE64"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="opt-encdec arrow" id="fromb64" title="From BASE64"><img class="icono" alt="from BASE64" src="img/arrow_left.png"></label>
+			<label class="LabStyle">BASE64</label>
+			<label class="opt-encdec arrow" id="tob64" title="To BASE64"><img class="icono" alt="To BASE64" src="img/arrow_right.png"></label>
 			<label class="separator"></label>
 			<!--0bBINARY-->
-			<label class="opt-encdec arrow" id="frombinary" title="From BINARY"><img class="icono" src="src/arrow_left.png"></label>
-			<label class="LabStyle" style="cursor: default;">BINARY</label>
-			<label class="opt-encdec arrow" id="tobinary" title="To BINARY"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="opt-encdec arrow" id="frombinary" title="From BINARY"><img class="icono" alt="From BINARY" src="img/arrow_left.png"></label>
+			<label class="LabStyle">BINARY</label>
+			<label class="opt-encdec arrow" id="tobinary" title="To BINARY"><img class="icono" alt="To BINARY" src="img/arrow_right.png"></label>
 			<label class="separator"></label>
 			<!--MD5-->
-			<label class="LabStyle" style="cursor: default;">MD5</label>
-			<label class="opt-encdec arrow" id="tomd5" title="To MD5"><img class="icono" src="src/arrow_right.png"></label>
-		</div>
-		<div class="encdec2">
+			<label class="LabStyle">MD5</label>
+			<label class="opt-encdec arrow" id="tomd5" title="To MD5"><img class="icono" alt="To MD5" src="img/arrow_right.png"></label>
+
 			<!--SHA-1 HASH-->
-			<label class="LabStyle" style="cursor: default;">SHA-1</label>
-			<label class="opt-encdec arrow" id="sha1" title="To SHA-1"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="LabStyle">SHA-1</label>
+			<label class="opt-encdec arrow" id="sha1" title="To SHA-1"><img class="icono" alt="To SHA-1" src="img/arrow_right.png"></label>
 			<!--SHA-256-->
-			<label class="LabStyle" style="cursor: default;">SHA-256</label>
-			<label class="opt-encdec arrow" id="sha256" title="To SHA-256"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="LabStyle">SHA-256</label>
+			<label class="opt-encdec arrow" id="sha256" title="To SHA-256"><img class="icono" alt="To SHA-256" src="img/arrow_right.png"></label>
 			<!--SHA-512-->
-			<label class="LabStyle" style="cursor: default;">SHA-512</label>
-			<label class="opt-encdec arrow" id="sha512" title="To SHA-512"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="LabStyle">SHA-512</label>
+			<label class="opt-encdec arrow" id="sha512" title="To SHA-512"><img class="icono" alt="To SHA-512" src="img/arrow_right.png"></label>
 			<!--ROT13-->
-			<label class="LabStyle" style="cursor: default;">ROT13</label>
-			<label class="opt-encdec arrow" id="rot13" title="To ROT13"><img class="icono" src="src/arrow_right.png"></label>
+			<label class="LabStyle">ROT13</label>
+			<label class="opt-encdec arrow" id="rot13" title="To ROT13"><img class="icono" alt="To ROT13" src="img/arrow_right.png"></label>
 		</div>
 		<div class="actions">
-			<button class="load-url-btn">Load URL</button>
-			<button class="split-url-btn">Split URL</button>
-			<button class="execute-payload-btn">Execute</button>
+			<button type="button" id="load-url-btn">Load URL</button>
+			<button type="button" id="split-url-btn">Split URL</button>
+			<button type="button" id="execute-payload-btn">Execute</button>
+			<!--
 			<select id="ihoaa">
 				<option value="int">INT</option>
 				<option value="hex">HEX</option>
@@ -405,36 +423,36 @@
 				<option value="alpha">Alpha</option>
 				<option value="alnum">AlNum</option>
 			</select>
-			<a id="dec4number" class="opt-ihoaa"><img src="src/minus.png" class="icono" title="Decrement"></a>
-			<a id="inc4number" class="opt-ihoaa"><img src="src/plus.png" class="icono" title="Increment"></a>
+			<a id="dec4number" class="opt-ihoaa"><img alt="Decrement number" src="img/minus.png" class="icono" title="Decrement"></a>
+			<a id="inc4number" class="opt-ihoaa"><img alt="Increment number" src="img/plus.png" class="icono" title="Increment"></a>
+			-->
 		</div>
 		<div class="toggles">
-			<label id="LABPdata" for="toggle-post-data">
-				<input id="toggle-post-data" type="checkbox">POST DATA
+			<label id="post-data-switch-label">
+				<input id="post-data-switch" type="checkbox">POST DATA
 			</label>
-			<label id="LABRdata" for="toggle-referer">
-				<input id="toggle-referer" type="checkbox">REFERER DATA
+			<label id="referer-data-switch-label">
+				<input id="referer-data-switch" type="checkbox">REFERER DATA
 			</label>
 		</div>
-		<div id="divPost" style="display: none;">
-			<label for="postdataField" id="postFieldLabel">POST DATA</label>
-			<textarea id="postdataField" cols="30" rows="3"></textarea>
+		<div class="hidden-input-panel" id="post-data-container">
+			<label for="post-data-input" id="post-data-input-label">POST DATA</label>
+			<textarea id="post-data-input" rows="5"></textarea>
 		</div>
-		<div id="divRefe" style="display: none;">
-			<label for="refedataField" id="refeFieldLabel">REFERER DATA</label>
-			<textarea id="refedataField" cols="30" rows="3"></textarea>
+		<div class="hidden-input-panel" id="referer-data-container">
+			<label for="referer-data-input" id="referer-data-input-label">REFERER DATA</label>
+			<textarea id="referer-data-input" rows="5"></textarea>
 		</div>
 		<footer>
-			<a href="https://linktr.ee/Jalkhov">&copy; Pedro Torcatt 2020</a>
+			<a href="https://linktr.ee/Jalkhov">&copy; Pedro Torcatt 2020-2025</a>
 		</footer>
-		<script src="js/JQuery3.4.1.js"></script>
-		<script src="js/jquery.modal.min.js"></script>
 		<script src="js/Main.js"></script>
+		<script src="js/SizeMemory.js"></script>
 		<script src="js/Functions.js"></script>
 		<script src="js/MenuActivators.js"></script>
 		<script src="js/EncDec.js"></script>
 		<script src="js/Ihoaa.js"></script>
-		<script src="js/Error.js"></script>
+		<!--<script src="js/Error.js"></script>-->
 		<script src="js/HackSearch.js"></script>
 		<script src="js/Other.js"></script>
 		<script src="js/Sql.js"></script>
@@ -442,6 +460,7 @@
 		<script src="js/Union.js"></script>
 		<script src="js/Waf.js"></script>
 		<script src="js/Xss.js"></script>
-		<script src="js/newMethod.js"></script>
+		<script src="js/MenuButtonHandler.js"></script>
+		<script src="js/Modal.js"></script>
 	</body>
 </html>

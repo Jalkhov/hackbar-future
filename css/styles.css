@@ -1,0 +1,293 @@
+/* === Variables de Colores === */
+:root {
+	--main-color: #000000; /* Negro principal */
+	--secondary-color: #ffa600; /* Naranja secundaria */
+	--secondary-color-hover: #db5d36; /* Naranja más claro para hover */
+	--text-color: #ffffff; /* Blanco para texto sobre negro */
+	--background-light: #e3e3e3; /* Gris claro para fondos neutros */
+}
+
+/* === Global Styles === */
+* {
+	font-family: "Inter", "Segoe UI", "Roboto", -apple-system, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	transition: 0.2s;
+}
+
+/* === Body & Layout === */
+body {
+	background-color: var(--main-color);
+	padding-top: 10px;
+	width: 100%;
+}
+
+textarea {
+	font-family: "Fira Code", "Consolas", monospace;
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: 0.3px;
+	width: 100%;
+	resize: vertical;
+	border: none;
+	border-bottom: 3px transparent solid;
+	padding: 3px;
+	outline: none; /* Quita la línea de foco predeterminada */
+	background-color: white; /* Fondo base */
+	transition: background-color 0.3s ease;
+}
+
+textarea:focus {
+	background-color: var(--background-light); /* Color perla (gris muy claro) */
+	border-bottom: 3px var(--secondary-color-hover) solid;
+}
+
+/* === Toggle Section === */
+.toggles {
+	display: block;
+	margin: 3px 0 10px -10px;
+}
+
+.toggles label,
+.toggles input[type="checkbox"] {
+	cursor: pointer;
+}
+
+.toggles label {
+	color: var(--text-color); /* Blanco para texto sobre negro */
+	margin-left: 13px;
+	font-weight: bolder;
+}
+
+/* === Action Buttons / Dropdowns === */
+.actions {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.actions button,
+.actions select {
+	background-color: var(--secondary-color);
+	border: none;
+	padding: 4px 10px;
+}
+
+.actions button:hover,
+.actions select:hover {
+	background-color: var(--secondary-color-hover);
+	cursor: pointer;
+}
+
+/* === Positioning Helpers === */
+#dec4number,
+#inc4number {
+	top: 4px;
+	position: relative;
+}
+
+#post-data-container {
+	margin-bottom: 10px;
+}
+
+.menu_container {
+	margin-bottom: 10px;
+}
+
+/* === Labels === */
+#post-data-input-label,
+#urlFieldLabel,
+#referer-data-input-label {
+	background-color: var(--background-light); /* Gris claro */
+	padding: 4px 6px;
+	border-top-right-radius: 5px;
+	margin-bottom: -1px;
+	text-align: center;
+	font-weight: bolder;
+}
+
+#urlFieldLabel {
+	width: 80px;
+}
+
+/* === Footer === */
+footer {
+	position: fixed;
+	right: 10px;
+	bottom: 5px;
+	padding-top: 10px;
+	width: 100%;
+	text-align: right;
+	font-size: 13px;
+}
+
+footer a {
+	color: var(--text-color); /* Blanco para texto sobre negro */
+	text-decoration: none;
+}
+
+footer a:hover {
+	color: var(--text-color);
+	text-decoration: underline;
+}
+
+/* === Icons === */
+.icono {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.icono:hover {
+	opacity: 1;
+}
+
+.icono:active {
+	filter: saturate();
+}
+
+.icono:focus {
+	outline: none;
+}
+
+.stringsACT {
+	left: 85px;
+	margin-bottom: -5px;
+	top: 20px;
+	position: relative;
+}
+
+.stringsACT img {
+	margin: 0 3px;
+	cursor: pointer;
+	width: 15px;
+}
+
+/* === Status / Info Boxes === */
+.currentDiv {
+	position: fixed;
+	padding: 3px 5px;
+	bottom: 5px;
+	width: 80px;
+	text-align: left;
+	background-color: var(--background-light); /* Gris claro */
+	color: var(--main-color); /* Negro */
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+/* === Encoding/Decoding Sections === */
+.LabStyle {
+	width: 60px;
+	color: var(--main-color); /* Negro */
+	font-weight: bolder;
+	cursor: default;
+}
+
+.arrow {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 3px;
+}
+
+.encdec,
+.encdec2 {
+	background: var(--background-light);
+	margin-top: -1px;
+	display: block;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	padding-left: 10px;
+}
+
+.encdec2 {
+	padding-left: 5px;
+	margin-top: -5px;
+}
+
+/* === Radio Button Labels === */
+.lab {
+	cursor: pointer;
+	user-select: none;
+	padding-right: 5px;
+}
+
+.lab .label-text {
+	font-weight: bolder;
+	color: var(--secondary-color); /* Color inactivo */
+	text-decoration: none;
+}
+
+.lab input[type="radio"] {
+	display: none;
+}
+
+/* Estilo cuando el radio está seleccionado */
+.lab input[type="radio"]:checked ~ .label-text {
+	color: #00e0c7;
+	text-decoration: underline;
+}
+
+/* Hover general */
+.lab:hover .label-text {
+	text-decoration: underline;
+}
+/* === Navigation Activators === */
+.type_activators {
+	margin-bottom: 10px;
+	padding-left: 6px;
+}
+
+.type_activators label {
+	color: var(--text-color); /* Blanco para texto sobre negro */
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.type_activators input[type="radio"] {
+	cursor: pointer;
+}
+
+/* === Sub-Type Categories === */
+.sub-type label {
+	background-color: var(--secondary-color); /* Naranja */
+	color: var(--main-color); /* Negro */
+	font-weight: bolder;
+	padding: 5px 0 5px 2px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.sub-type {
+	margin-bottom: 15px;
+}
+
+.sub-type .options {
+	line-height: 22px;
+}
+
+.sub-type a {
+	color: var(--main-color); /* Negro */
+	text-decoration: none;
+	padding: 3px 6px;
+	cursor: pointer;
+}
+
+.sub-type a:hover {
+	background-color: var(--secondary-color); /* Naranja */
+	text-decoration: none;
+}
+
+/* === Scrollable Content Area === */
+div.scroll {
+	padding: 4px;
+	height: 160px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align: justify;
+	background-color: var(--background-light);
+	resize: vertical;
+}
+
+.hidden-input-panel {
+	display: none; /* Reemplaza el style inline */
+}
