@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración - Hackbar Future</title>
+
+    <!-- Reset -->
+    <link rel="stylesheet" href="css/normalize.min.css">
+
+    <!-- Estilo UI -->
+    <link rel="stylesheet" href="css/spectre.min.css">
+
+ <style>
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background-color: var(--main-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        h1 {
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            margin-top: 25px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .form-group label,
+        .form-radio-label,
+        .form-checkbox-label {
+            display: block;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .form-select,
+        .form-input {
+            width: 100%;
+            margin-top: 5px;
+            padding: 6px 10px;
+            background-color: var(--background-light);
+            border: none;
+            border-radius: 3px;
+        }
+
+        .form-select:hover,
+        .form-input:hover {
+            background-color: #d9d9d9;
+        }
+
+        .form-radio,
+        .form-checkbox {
+            margin: 8px 0;
+        }
+
+        .form-radio label,
+        .form-checkbox label {
+            color: var(--text-color);
+        }
+
+        .form-radio-input:checked + .form-radio-check,
+        .form-checkbox-input:checked + .form-checkbox-check {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--main-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color-hover);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .btn-group .btn {
+            background-color: var(--secondary-color);
+            color: var(--main-color);
+            margin-right: 10px;
+        }
+
+        .btn-group .btn:hover {
+            background-color: var(--secondary-color-hover);
+        }
+    </style>
+</head>
+<body id="body">
+
+    <div class="container">
+
+        <header>
+            <h1>Configuración - Hackbar Future</h1>
+            <p>Personaliza la apariencia y comportamiento de la extensión.</p>
+        </header>
+
+        <!-- === Apariencia === -->
+        <section class="section">
+            <h2>Apariencia</h2>
+
+            <div class="form-group">
+                <label for="theme-select">Tema</label>
+                <select id="theme-select" class="form-select">
+                    <option value="dark">Oscuro (por defecto)</option>
+                    <option value="light">Claro</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Color principal</label>
+                <input type="color" id="accent-color" value="#FFA600" class="form-input input-sm">
+            </div>
+
+            <div class="form-group">
+                <label class="form-checkbox">
+                    <input type="checkbox" id="compact-ui" class="form-checkbox-input">
+                    <i class="form-icon"></i> Modo compacto
+                </label>
+            </div>
+        </section>
+
+        <!-- === Comportamiento === -->
+        <section class="section">
+            <h2>Comportamiento</h2>
+
+            <div class="form-group">
+                <label>Mostrar sección al abrir:</label>
+
+                <div class="form-radio">
+                    <label class="form-radio-label">
+                        <input class="form-radio-input" type="radio" name="default-section" value="sqlbasics" checked>
+                        <span class="form-radio-check"></span>
+                        <span class="form-radio-label-text">SQL Basics</span>
+                    </label>
+                </div>
+
+                <div class="form-radio">
+                    <label class="form-radio-label">
+                        <input class="form-radio-input" type="radio" name="default-section" value="unionbased">
+                        <span class="form-radio-check"></span>
+                        <span class="form-radio-label-text">Union Based</span>
+                    </label>
+                </div>
+
+                <div class="form-radio">
+                    <label class="form-radio-label">
+                        <input class="form-radio-input" type="radio" name="default-section" value="hacksearch">
+                        <span class="form-radio-check"></span>
+                        <span class="form-radio-label-text">Hack Search</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-checkbox">
+                    <input type="checkbox" id="auto-copy-payload" class="form-checkbox-input">
+                    <i class="form-icon"></i> Copiar payload automáticamente
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="language-select">Idioma por defecto</label>
+                <select id="language-select" class="form-select">
+                    <option>Español</option>
+                    <option>Inglés</option>
+                    <option>Portugués</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- === Herramientas === -->
+        <section class="section">
+            <h2>Herramientas</h2>
+
+            <div class="form-group">
+                <label>Codificación predeterminada</label>
+                <div class="btn-group btn-group-block">
+                    <button class="btn active" data-encode="hex">HEX</button>
+                    <button class="btn" data-encode="base64">Base64</button>
+                    <button class="btn" data-encode="url">URL</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Opciones avanzadas</label>
+
+                <div class="form-checkbox">
+                    <label class="form-checkbox-label">
+                        <input type="checkbox" id="show-binary-tools" class="form-checkbox-input">
+                        <i class="form-icon"></i> Mostrar herramientas binarias
+                    </label>
+                </div>
+
+                <div class="form-checkbox">
+                    <label class="form-checkbox-label">
+                        <input type="checkbox" id="enable-waf-bypass" class="form-checkbox-input">
+                        <i class="form-icon"></i> Activar bypass WAF automático
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="token-input">Token personalizado</label>
+                <input type="text" id="token-input" class="form-input" placeholder="ej: XSRF-TOKEN=ABC123">
+            </div>
+        </section>
+
+        <!-- === Accesibilidad === -->
+        <section class="section">
+            <h2>Accesibilidad</h2>
+
+            <div class="form-group">
+                <label for="font-size-range">Tamaño de fuente</label>
+                <input type="range" min="12" max="20" value="14" id="font-size-range" class="form-range">
+            </div>
+
+            <div class="form-group">
+                <label class="form-toggle">
+                    <input type="checkbox" id="high-contrast" class="form-checkbox-input">
+                    <i class="form-icon"></i>
+                    <span>Contraste alto</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- === Credenciales === -->
+        <section class="section">
+            <h2>Credenciales</h2>
+
+            <div class="form-group">
+                <label for="api-key">API Key externa</label>
+                <input type="text" id="api-key" class="form-input" placeholder="Tu clave aquí">
+            </div>
+
+            <div class="form-group">
+                <label for="proxy-url">Servidor Proxy</label>
+                <input type="url" id="proxy-url" class="form-input" placeholder="https://tuproxy.com/api/v1 ">
+            </div>
+        </section>
+
+        <!-- === Respaldo y restauración === -->
+        <section class="section">
+            <h2>Respaldo y Restauración</h2>
+
+            <div class="form-group">
+                <label>Exportar configuración</label>
+                <textarea class="form-input" rows="5" readonly>
+{
+    "theme": "dark",
+    "default_section": "sqlbasics",
+    "auto_copy": true
+}
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="import-config">Importar configuración</label>
+                <input type="file" id="import-config" class="form-input">
+            </div>
+        </section>
+
+        <!-- === Acciones === -->
+        <div class="form-group">
+            <button class="btn btn-primary">Guardar Cambios</button>
+            <button class="btn">Restablecer</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
