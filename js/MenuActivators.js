@@ -1,45 +1,69 @@
-$(document).ready(function() {
-	$('.unionbased').hide();
-	$('.hacksearch').hide();
-	$('.strings').hide();
-	$('.other').hide();
+/**
+ * Dynamic Section Switcher
+ * ------------------------
+ * Manages visibility of content sections based on selected radio buttons.
+ * Updates the appearance of labels and resizes a scrollable container
+ * depending on the selected section.
+ *
+ * Sections are controlled by classes:
+ * - sqlbasics
+ * - unionbased
+ * - hacksearch
+ * - strings
+ * - other
+ *
+ * Each section is associated with a radio button whose `value` matches the class name.
+ */
 
-	$('input[type="radio"]').click(function() {
-		var inputValue = $(this).attr("value");
-		var targetDiv = $("." + inputValue);
-		var targetlabel = $("#" + "LAB" + inputValue);
+document.addEventListener("DOMContentLoaded", () => {
+	const allSections = document.querySelectorAll(".type");
+	const scrollEl = document.querySelector(".scroll");
 
-		//CHANGE DIV
-		$(".type").not(targetDiv).hide();
-		$(targetDiv).show();
-
-		switch (inputValue) {
-			case "sqlbasics":
-				$('.scroll').css("height", "160");
-				break;
-
-			case "unionbased":
-				$('.scroll').css("height", "160");
-				break;
-
-			case "hacksearch":
-				$('.scroll').css("height", "160");
-				break;
-
-			case "strings":
-				$('.scroll').css("height", "70");
-				break;
-
-			case "other":
-				$('.scroll').css("height", "70");
-				break;
+	function showSection(inputValue) {
+		for (const section of allSections) {
+			section.style.display = section.classList.contains(inputValue)
+				? "block"
+				: "none";
 		}
 
-		//CHANGE LABEL
-		$(".lab").not(targetlabel).css('color', 'white');
-		$(".lab").not(targetlabel).css('text-decoration', 'none');
+		if (scrollEl) {
+			switch (inputValue) {
+				case "sqlbasics":
+				case "unionbased":
+				case "hacksearch":
+					scrollEl.style.height = "250px";
+					break;
+				case "strings":
+				case "other":
+					scrollEl.style.height = "70px";
+					break;
+				default:
+					break;
+			}
+		}
 
-		$(targetlabel).css('color', '#00E0C7');
-		$(targetlabel).css('text-decoration', 'underline');
+		browser.storage.local.set({ activeSection: inputValue });
+	}
+
+	async function restoreSelection() {
+		const result = await browser.storage.local.get("activeSection");
+		const lastSection = result.activeSection || "sqlbasics";
+
+		const radioButton = document.querySelector(`input[value="${lastSection}"]`);
+		if (radioButton) {
+			radioButton.checked = true;
+		}
+
+		showSection(lastSection);
+	}
+
+	document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+		radio.addEventListener("change", function () {
+			if (this.checked) {
+				showSection(this.value);
+			}
+		});
 	});
+
+	restoreSelection();
 });

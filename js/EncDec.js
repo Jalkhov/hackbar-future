@@ -1,94 +1,76 @@
+/**
+ * Encoder/Decoder Action Handler
+ * -------------------------------
+ * This function processes encoding and decoding actions based on the selected operation ID.
+ * It retrieves the currently selected text in a browser context (e.g., content script),
+ * applies the appropriate transformation, and replaces the selection with the result.
+ *
+ * Supported operations:
+ * - Hex: encode / decode
+ * - URL: encode / decode
+ * - Base64: encode / decode
+ * - Binary: encode / decode
+ * - Hashing: MD5, SHA-1, SHA-256, SHA-512
+ * - ROT13
+ */
+
 function setEncDec(id) {
-	switch (id) {
+	// Mapping of action IDs to their corresponding transformation functions
+	const operationMap = {
 		/*------FROM HEX------*/
-		case "fromhex":
-			getSelectedText(function(str) {
-				setSelectedText(hexdecode(str));
-			});
-			break;
+		fromhex: hexdecode,
 
 		/*------TO HEX------*/
-		case "tohex":
-			getSelectedText(function(str) {
-				setSelectedText(hexencode(str));
-			});
-			break;
+		tohex: hexencode,
 
 		/*------FROM %URL------*/
-		case "fromurl":
-			getSelectedText(function(str) {
-				setSelectedText(urldecode(str));
-			});
-			break;
+		fromurl: urldecode,
 
 		/*------TO %URL------*/
-		case "tourl":
-			getSelectedText(function(str) {
-				setSelectedText(urlencode(str));
-			});
-			break;
+		tourl: urlencode,
 
 		/*------FROM BASE64------*/
-		case "fromb64":
-			getSelectedText(function(str) {
-				setSelectedText(base64_decode(str));
-			});
-			break;
+		fromb64: base64_decode,
 
 		/*------TO BASE64------*/
-		case "tob64":
-			getSelectedText(function(str) {
-				setSelectedText(base64_encode(str));
-			});
-			break;
+		tob64: base64_encode,
 
 		/*------FROM 0bBINARY------*/
-		case "frombinary":
-			getSelectedText(function(str) {
-				setSelectedText(fromBinary(str));
-			});
-			break;
+		frombinary: fromBinary,
 
 		/*------TO 0bBINARY------*/
-		case "tobinary":
-			getSelectedText(function(str) {
-				setSelectedText(toBinary(str));
-			});
-			break;
+		tobinary: toBinary,
 
 		/*------TO MD5------*/
-		case "tomd5":
-			getSelectedText(function(str) {
-				setSelectedText(md5(str));
-			});
-			break;
+		tomd5: md5,
 
 		/*------SHA-1 HASH------*/
-		case "sha1":
-			getSelectedText(function(str) {
-				setSelectedText(sha1hash(str));
-			});
-			break;
+		sha1: sha1hash,
 
 		/*------SHA-256------*/
-		case "sha256":
-			getSelectedText(function(str) {
-				setSelectedText(sha256(str));
-			});
-			break;
+		sha256: sha256,
 
 		/*------ROT13------*/
-		case "rot13":
-			getSelectedText(function(str) {
-				setSelectedText(rot13(str));
-			});
-			break;
+		rot13: rot13,
 
 		/*------SHA-512------*/
-		case "sha512":
-			getSelectedText(function(str) {
-				setSelectedText(sha512(str));
-			});
-			break;
+		sha512: sha512,
+	};
+
+	// Get the corresponding function for the given id
+	const handler = operationMap[id];
+
+	if (handler) {
+		getSelectedText((str) => {
+			try {
+				const result = handler(str);
+				setSelectedText(result);
+			} catch (error) {
+				console.error(`Error executing operation "${id}":`, error);
+				setSelectedText(`[Error: ${error.message}]`);
+			}
+		});
+	} else {
+		console.warn(`Unsupported operation: "${id}"`);
 	}
 }

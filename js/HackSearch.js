@@ -1,144 +1,105 @@
-//For more info about hack search visit http://penzil-hacksearch.blogspot.com
-function setHacksearch(id){
-	var b = "http://www.google.com/search?as_q=";
-	var k = "http://www.robtex.com/dns/";
-	var i = "http://www.intodns.com/";
-	var g = "http://google.com/safebrowsing/diagnostic?site=";
-	var j = "http://www.siteadvisor.com/sites/";
-	var m = "http://safeweb.norton.com/report/show?url=";
-	var d = "http://www.avgthreatlabs.com/sitereports/domain/";
-	var l = "http://dnsw.info/";
-	var e = "http://rbls.org/";
-	var a = "http://www.alexa.com/siteinfo/";
-	var h = "http://builtwith.com/";
-	browser.tabs.query({
-		active: true,
-		currentWindow: true
-	}).then(function(tabs) {
-		var domain = getDomain(tabs[0].url);
-	
-		if (domain) {
-			switch (id) {
-				/*------WITHIN SITE SEARCH------*/
-				case "wSite":
-					newTab(b + "site:" + domain);
-					break;
+/**
+ * HackSearch Module
+ * -----------------
+ * This function generates and opens targeted search queries in a new tab based on the selected operation.
+ * It's useful for reconnaissance tasks like finding sensitive files, subdomains, misconfigurations,
+ * or analyzing domain reputation and DNS information.
+ *
+ * For more info: http://penzil-hacksearch.blogspot.com
+ */
 
-				/*------ENTIRE DOMAIN SEARCH------*/
-				case "eSite":
-					newTab(b + "site:" + domain.replace("www.", ""));
-					break;
+/**
+ * Opens a new browser tab with the given URL.
+ * @param {string} url - The URL to open in a new tab.
+ */
+function newTab(url) {
+	browser.tabs.create({ url });
+}
 
-				/*------INTERNAL LINKS SEARCH------*/
-				case "iLink":
-					newTab(b + "link:" + domain.replace("www.", "") + "+site:" + domain.replace("www.", ""));
-					break;
+/**
+ * Handles all hacksearch-related actions based on the clicked button ID.
+ * @param {string} id - The ID of the clicked element that determines which action to perform.
+ */
+function setHacksearch(id) {
+	// Base URLs used for different types of searches and lookups
+	const SEARCH_URLS = {
+		GOOGLE_SEARCH: "https://www.google.com/search?as_q= ",
+		ROBTEX_DNS: "https://www.robtex.com/dns/ ",
+		INTO_DNS: "https://www.intodns.com/ ",
+		GOOGLE_SAFE_BROWSING: "https://google.com/safebrowsing/diagnostic?site= ",
+		SITE_ADVISOR: "https://www.siteadvisor.com/sites/ ",
+		NORTON_SAFEWEB: "https://safeweb.norton.com/report/show?url= ",
+		AVG_THREAT_LABS: "https://www.avgthreatlabs.com/sitereports/domain/ ",
+		DNSW_INFO: "http://dnsw.info/",
+		RBLS_ORG: "http://rbls.org/",
+		ALEXA_SITEINFO: "https://www.alexa.com/siteinfo/ ",
+		BUILT_WITH: "https://builtwith.com/ ",
+	};
 
-				/*------BACK LINKS SEARCH------*/
-				case "bLink":
-					newTab(b + "link:" + domain.replace("www.", "") + "+-site:" + domain.replace("www.", ""));
-					break;
+	// Retrieve current active tab and extract the domain
+	browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+		const domain = getDomain(tabs[0].url);
+		if (!domain) return;
 
-				/*------SUBDOMAIN SEARCH------*/
-				case "subdomain":
-					newTab(b + "site:" + domain.replace("www.", "") + "+-site:" + domain);
-					break;
+		const cleanDomain = domain.replace("www.", "");
+		const domainKeyword = cleanDomain.replace(
+			/www\.|\.com|\.in|\.org|\.co\.in|\.edu|\.gov|\.net|\.info|\.uk|\.ae/gi,
+			"",
+		);
 
-				/*------INURL SEARCH------*/
-				case "url":
-					newTab(b + "inurl:" + domain.replace(/www.|.com|.in|.org|.co.in|.edu|.gov|.net|.info|.uk|.ae/ig, "") + "+-site:" + domain.replace("www.", ""));
-					break;
+		/**
+		 * Map of operation IDs to their corresponding URL builders.
+		 * Each entry returns the full URL string to open in a new tab.
+		 */
+		const operations = {
+			// Site-based searches
+			wSite: () => `${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}`,
+			eSite: () => `${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}`,
+			iLink: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}link:${cleanDomain}+site:${cleanDomain}`,
+			bLink: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}link:${cleanDomain}+-site:${cleanDomain}`,
+			subdomain: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+-site:www.${cleanDomain}`,
+			url: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}inurl:${domainKeyword}+-site:${cleanDomain}`,
+			userpass: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}intext:${domainKeyword}+intext:(username||password||passwd||pwd||uname||paswd||passw0rd)`,
+			email: () => `${SEARCH_URLS.GOOGLE_SEARCH}"*@${cleanDomain}"`,
+			adminlogin: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+inurl:admin||administrator||adm||login||l0gin`,
+			misc: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+inurl:history||access||log||license||readme||meta||root||sql||source||include||private||src||cgi||conf||account||asset||attach||audit||upload||auth||backup||bkup||build||cmd||demo||sample||default||mail||bin||etc`,
+			docs: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+filetype:pdf||doc||xml||txt||xls||ppt||docx||wps||rtf||csv||pptx||xlsx||xlr`,
+			conf: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+filetype:pwl||pol||pl||sh||ini||ht||exe||cgi||api||pdb||sql||ins||cfg||keychain||prf`,
+			Bkup: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+filetype:ost||bak||eml||bck||bac||tmp`,
+			arch: () =>
+				`${SEARCH_URLS.GOOGLE_SEARCH}site:${cleanDomain}+filetype:zip||rar||jar||tar.gz||7z||tar.b2z||tar.7z||tar`,
 
-				/*------USERNAME/PASSWORD SEARCH------*/
-				case "userpass":
-					newTab(b + "intext:" + domain.replace(/www./ig, "") + "+intext:(username||password||passwd||pwd||uname||paswd||passw0rd)");
-					break;
+			// DNS & Domain tools
+			DHealth: () => SEARCH_URLS.INTO_DNS + cleanDomain,
+			Dinfo: () => `${SEARCH_URLS.ROBTEX_DNS + cleanDomain}.html`,
+			dnsw: () => SEARCH_URLS.DNSW_INFO + cleanDomain,
+			rbls: () => SEARCH_URLS.RBLS_ORG + cleanDomain,
 
-				/*------EMAIL SEARCH------*/
-				case "email":
-					newTab(b + '"*@' + domain.replace("www.", "") + '"');
-					break;
+			// Security & Reputation checks
+			googleSafebrowsing: () => SEARCH_URLS.GOOGLE_SAFE_BROWSING + cleanDomain,
+			siteadvisor: () => SEARCH_URLS.SITE_ADVISOR + cleanDomain,
+			norton: () => SEARCH_URLS.NORTON_SAFEWEB + cleanDomain,
+			avgthreatlabs: () => SEARCH_URLS.AVG_THREAT_LABS + cleanDomain,
+			alexa: () => SEARCH_URLS.ALEXA_SITEINFO + cleanDomain,
+			builtWith: () => SEARCH_URLS.BUILT_WITH + cleanDomain,
+		};
 
-				/*------ADMIN/LOGIN PAGE SEARCH------*/
-				case "adminlogin":
-					newTab(b + "site:" + domain.replace("www.", "") + "+inurl:admin||administrator||adm||login||l0gin");
-					break;
-
-				/*------MISC SEARCH------*/
-				case "misc":
-					newTab(b + "site:" + domain.replace("www.", "") + "+inurl:history||access||log||license||readme||meta||root||sql||source||include||private||src||cgi||conf||account||asset||attach||audit||upload||auth||backup||bkup||build||cmd||demo||sample||default||mail||bin||etc");
-					break;
-
-				/*------DOCUMENTS SEARCH------*/
-				case "docs":
-					newTab(b + "site:" + domain.replace("www.", "") + "+filetype:pdf || filetype:doc || filetype:xml || filetype:txt ||  filetype:xls || filetype:ppt || filetype:pps || filetype:docx || filetype:wps || filetype:rtf || filetype:csv || filetype:pptx || filetype:xlsx || filetype:xlr");
-					break;
-
-				/*------CONFIG FILE SEARCH------*/
-				case "conf":
-					newTab(b + "site:" + domain.replace("www.", "") + "+filetype:pwl || filetype:pol || filetype:pl || filetype:sh ||filetype:ini || filetype:ht || filetype:exe || filetype:cgi || filetype:api || filetype:pdb || filetype:sql || filetype:ins || filetype:cfg || filetype:keychain || filetype:prf");
-					break;
-
-				/*------BACKUP FILE SEARCH------*/
-				case "Bkup":
-					newTab(b + "site:" + domain.replace("www.", "") + "+filetype:ost || filetype:bak || filetype:eml || filetype:bck || filetype:bac || filetype:tmp");
-					break;
-
-				/*------ARCHIVE SEARCH------*/
-				case "arch":
-					newTab(b + "site:" + domain.replace("www.", "") + "+filetype:zip || filetype:rar || filetype:jar || filetype:tar.gz || filetype:7z || filetype:tar.b2z || filetype:tar.7z || filetype:tar");
-					break;
-
-				/*------DNS HEALTH------*/
-				case "DHealth":
-					newTab(i + domain.replace("www.", ""));
-					break;
-
-				/*------DNS INFORMATION------*/
-				case "Dinfo":
-					newTab(k + domain.replace("www.", "") + ".html");
-					break;
-
-				/*------DNS WHOIS------*/
-				case "dnsw":
-					newTab(l + domain.replace("www.", ""));
-					break;
-
-				/*------BLACKLIST CHECK------*/
-				case "rbls":
-					newTab(e + domain.replace("www.", ""));
-					break;
-
-				/*------SAFE BROWSING------*/
-				case "googleSafebrowsing":
-					newTab(g + domain.replace("www.", ""));
-					break;
-
-				/*------MCAFEE------*/
-				case "siteadvisor":
-					newTab(j + domain.replace("www.", ""));
-					break;
-
-				/*------NORTON------*/
-				case "norton":
-					newTab(m + domain.replace("www.", ""));
-					break;
-
-				/*------AVG------*/
-				case "avgthreatlabs":
-					newTab(d + domain.replace("www.", ""));
-					break;
-
-				/*------ALEXA------*/
-				case "alexa":
-					newTab(a + domain.replace("www.", ""));
-					break;
-
-				/*------BUILTWITH------*/
-				case "builtWith":
-					newTab(h + domain.replace("www.", ""));
-					break;
-			}
+		// Execute the matched operation
+		const operation = operations[id];
+		if (operation && typeof operation === "function") {
+			newTab(operation());
+		} else {
+			console.warn(`Unsupported operation ID: "${id}"`);
 		}
 	});
 }
